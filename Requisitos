@@ -1,0 +1,57 @@
+ 5.7. Desafio: objeto this, construtores e JavaBeans
+ * 
+ * Os requisitos passados para o analista foram:
+
+Uma conta a pagar possui uma descrição, valor, data de vencimento e fornecedor.
+Um fornecedor é uma entidade que possui apenas o nome.
+Veja abaixo o diagrama de classes que você recebeu:
+
+(...)
+
+Agora você deve criar o código-fonte das classes ContaPagar e Fornecedor. 
+Note que existem dois construtores na classe ContaPagar, sendo um construtor padrão 
+(sem parâmetros), que não deve fazer nada, e outro construtor que recebe alguns parâmetros 
+e deve atribuir os valores recebidos às variáveis de instância.
+
+As duas classes são JavaBeans. Quando desenhamos diagramas de classes, 
+não há necessidade de mostrar os métodos getters e setters de JavaBeans.
+
+O método pagar() deve apenas exibir na tela as informações do pagamento 
+(descrição da conta, valor, data de vencimento e nome do fornecedor).
+
+Quando finalizar a criação das classes ContaPagar e Fornecedor, crie uma outra classe chamada Principal 
+
+Crie uma enumeração chamada SituacaoConta com as seguintes constantes: PENDENTE, PAGA e CANCELADA.
+Inclua um atributo chamado "situacaoConta" do tipo SituacaoConta na classe ContaPagar.
+O atributo "situacaoConta" deve possuir apenas o método getter. O setter não deve existir por questões 
+de segurança. Ninguém pode pagar uma conta simplesmente mudando a situação dela, mas deve sempre passar 
+pelo método pagar().
+No construtor padrão (o que não recebe parâmetros) da classe ContaPagar, atribua a constante PENDENTE 
+(da SituacaoConta) à variável "situacaoConta", assim, todas as contas a pagar instanciadas ficarão com 
+o status PENDENTE por padrão.
+No construtor que recebe os parâmetros, lembre de invocar o construtor padrão usando a instrução this(), 
+pois também neste caso é importante que a "situacaoConta" seja definida com a constante PENDENTE.
+O método pagar() deve verificar a situação da conta antes de efetivar o pagamento. Se a situação for 
+CANCELADA ou PAGA, uma mensagem de erro deve ser exibida ao usuário. Uma conta só deve ser paga se a 
+situação atual for PENDENTE.
+No caso de uma conta ser paga através do método pagar(), não esquecer de atribuir a constante PAGA à 
+variável "situacaoConta".
+Crie um método cancelar() na classe ContaPagar que muda a situação da conta para CANCELADA e exibe 
+uma mensagem para o usuário. A regra neste caso é a seguinte: não se pode cancelar uma conta que já 
+foi cancelada ou paga.
+
+Você precisa exibir relatórios de contas a pagar e receber, pois ajudará no controle do que tem 
+para pagar e receber na empresa. Para isso, precisará de uma nova classe chamada RelatorioContas. 
+Essa nova classe deve possuir um método que recebe um array de contas e exibe o detalhamento de todas elas.
+
+A classe RelatorioContas não deve conhecer os detalhes das subclasses de Conta 
+(ou seja, ContaPagar e ContaReceber). Não seria uma boa prática essa classe obter os detalhes das 
+contas para mostrá-los na tela, por isso, temos uma excelente ideia de uso da orientação a objetos. 
+Na classe Conta, adicione um método abstrato (não implementado)
+
+Ao fazer isso, você será obrigado a implementar esse novo método nas subclasses ContaPagar 
+e ContaReceber. Então, faça isso! Esse método deve exibir todos os detalhes do objeto em um 
+formato legal para aparecer em um relatório.
+
+Agora você pode voltar à classe RelatorioContas e invocar o método exibirDetalhes() durante a listagem. 
+Veja que a classe RelatorioContas só deve conhecer o nome do método exibirDetalhes(), mais nada!
